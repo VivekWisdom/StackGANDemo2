@@ -238,7 +238,8 @@ class TextDataset(data.Dataset):
 
     def load_all_captions(self):
         def load_captions(caption_name):  # self,
-            cap_path = caption_name
+            cap_path = str(caption_name)
+            print(cap_path)
             with open(cap_path, "r") as f:
                 captions = f.read().decode('utf8').split('\n')
             captions = [cap.replace("\ufffd\ufffd", " ")
@@ -247,7 +248,7 @@ class TextDataset(data.Dataset):
 
         caption_dict = {}
         for key in self.filenames:
-            caption_name = '%s/text/%s.txt' % (self.data_dir, key)
+            caption_name = '%s/text_c10/%s.txt' % (self.data_dir, key)
             captions = load_captions(caption_name)
             caption_dict[key] = captions
         return caption_dict
