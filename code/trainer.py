@@ -238,8 +238,10 @@ class GANTrainer(object):
             self.summary_writer = summary.FileWriter(self.log_dir)
 
         s_gpus = cfg.GPU_ID.split(',')
+	print('GPUS ::',s_gpus)
         self.gpus = [int(ix) for ix in s_gpus]
         self.num_gpus = len(self.gpus)
+	print(self.gpus[0])
         torch.cuda.set_device(self.gpus[0])
         cudnn.benchmark = True
 
